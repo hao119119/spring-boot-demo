@@ -23,6 +23,7 @@ public class WebLogAspect {
     @Pointcut("execution(public * com.didispace.web..*.*(..))")
     public void webLog(){}
 
+
     @Before("webLog()")
     public void doBefore(JoinPoint joinPoint) throws Throwable {
         // 接收到请求，记录请求内容
