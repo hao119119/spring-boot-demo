@@ -5,7 +5,7 @@
 package com.inspur.bigdata.service;
 
 import com.inspur.bigdata.domain.User;
-import com.inspur.bigdata.domain.UserRepository;
+import com.inspur.bigdata.domain.UserMongoRepository;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,7 +23,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class SpringMongoTest {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserMongoRepository userRepository;
 
     @Before
     public void setUp() {

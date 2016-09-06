@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
  * @author Chen Hao
  * @version V1.2.0 16-9-5
  */
-public interface UserRepository extends MongoRepository<User, Long> {
+public interface UserMongoRepository extends MongoRepository<User, Long> {
 
     User findByName(String name);
 }

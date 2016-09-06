@@ -4,6 +4,7 @@
  */
 package com.inspur.bigdata.domain;
 
+import com.inspur.bigdata.domain.Customer;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 /**

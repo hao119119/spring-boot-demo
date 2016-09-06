@@ -31,6 +31,11 @@ public class MultiDataSourceTest {
     @Qualifier("secondaryJdbcTemplate")
     protected JdbcTemplate jdbcTemplate2;
 
+
+    @Autowired
+    @Qualifier("envJdbcTemplate")
+    protected JdbcTemplate jdbcTemplate3;
+
     @Before
     public void setUp() {
         jdbcTemplate1.update("DELETE  FROM  USER ");
@@ -52,6 +57,9 @@ public class MultiDataSourceTest {
 
         // 查一下第一个数据源中是否有两条数据，验证插入是否成功
         Assert.assertEquals("1", jdbcTemplate2.queryForObject("select count(1) from user", String.class));
+
+
+        jdbcTemplate3.update("insert into user(id,name,age) values(?, ?, ?)", 8, "chenhao", 30);
 
     }
 }

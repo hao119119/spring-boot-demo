@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
+import java.util.Map;
 
 
 /**
@@ -21,6 +22,19 @@ import javax.sql.DataSource;
  */
 @Configuration
 public class DataSourceConfig {
+
+    @Bean(name = "envDataSource")
+    @Qualifier("envDataSource")
+    public DataSource envDataSource(){
+        String java = System.getenv("JAVA_HOME");
+        Map envs = System.getenv();
+        System.out.println(envs.toString());
+        System.out.println(java);
+        return DataSourceBuilder.create().driverClassName("com.mysql.jdbc.Driver")
+                .url("jdbc:mysql://localhost:3306/test3").username("root")
+                .password("hao119119").build();
+    }
+
 
     @Bean(name = "defaultDataSource")
     @Qualifier("defaultDataSource")
@@ -59,6 +73,12 @@ public class DataSourceConfig {
     @Bean(name = "secondaryJdbcTemplate")
     public JdbcTemplate secondaryJdbcTemplate(
             @Qualifier("secondaryDataSource") DataSource dataSource) {
+        return new JdbcTemplate(dataSource);
+    }
+
+    @Bean(name = "envJdbcTemplate")
+    public JdbcTemplate envJdbcTemplate(
+            @Qualifier("envDataSource") DataSource dataSource) {
         return new JdbcTemplate(dataSource);
     }
 }
