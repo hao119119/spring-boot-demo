@@ -26,43 +26,43 @@ import java.util.Map;
  * @version V1.2.0 16-9-5
  */
 
-@Configuration
-@EnableTransactionManagement
-@EnableJpaRepositories(
-        entityManagerFactoryRef="entityManagerFactoryDefault",
-        transactionManagerRef="transactionManagerDefault",
-        basePackages= { "com.inspur.bigdata.domain" }) //设置Repository所在位置
+//@Configuration
+//@EnableTransactionManagement
+//@EnableJpaRepositories(
+//        entityManagerFactoryRef="entityManagerFactoryDefault",
+//        transactionManagerRef="transactionManagerDefault",
+//        basePackages= { "com.inspur.bigdata.domain" }) //设置Repository所在位置
 
 public class DefaultConfig {
 
-    @Autowired
-    @Qualifier("defaultDataSource")
-    private DataSource primaryDataSource;
-
-    @Bean(name = "entityManagerDefault")
-    public EntityManager entityManager(EntityManagerFactoryBuilder builder) {
-        return entityManagerFactoryPrimary(builder).getObject().createEntityManager();
-    }
-
-    @Bean(name = "entityManagerFactoryDefault")
-    public LocalContainerEntityManagerFactoryBean entityManagerFactoryPrimary (EntityManagerFactoryBuilder builder) {
-        return builder
-                .dataSource(primaryDataSource)
-                .properties(getVendorProperties(primaryDataSource))
-                .packages("com.inspur.bigdata.domain") //设置实体类所在位置
-                .persistenceUnit("DefaultPersistenceUnit")
-                .build();
-    }
-
-    @Autowired
-    private JpaProperties jpaProperties;
-
-    private Map<String, String> getVendorProperties(DataSource dataSource) {
-        return jpaProperties.getHibernateProperties(dataSource);
-    }
-
-    @Bean(name = "transactionManagerDefault")
-    public PlatformTransactionManager transactionManagerPrimary(EntityManagerFactoryBuilder builder) {
-        return new JpaTransactionManager(entityManagerFactoryPrimary(builder).getObject());
-    }
+//    @Autowired
+//    @Qualifier("defaultDataSource")
+//    private DataSource primaryDataSource;
+//
+//    @Bean(name = "entityManagerDefault")
+//    public EntityManager entityManager(EntityManagerFactoryBuilder builder) {
+//        return entityManagerFactoryPrimary(builder).getObject().createEntityManager();
+//    }
+//
+//    @Bean(name = "entityManagerFactoryDefault")
+//    public LocalContainerEntityManagerFactoryBean entityManagerFactoryPrimary (EntityManagerFactoryBuilder builder) {
+//        return builder
+//                .dataSource(primaryDataSource)
+//                .properties(getVendorProperties(primaryDataSource))
+//                .packages("com.inspur.bigdata.domain") //设置实体类所在位置
+//                .persistenceUnit("DefaultPersistenceUnit")
+//                .build();
+//    }
+//
+//    @Autowired
+//    private JpaProperties jpaProperties;
+//
+//    private Map<String, String> getVendorProperties(DataSource dataSource) {
+//        return jpaProperties.getHibernateProperties(dataSource);
+//    }
+//
+//    @Bean(name = "transactionManagerDefault")
+//    public PlatformTransactionManager transactionManagerPrimary(EntityManagerFactoryBuilder builder) {
+//        return new JpaTransactionManager(entityManagerFactoryPrimary(builder).getObject());
+//    }
 }

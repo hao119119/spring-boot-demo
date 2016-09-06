@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    @Qualifier("defaultJdbcTemplate")
+    //@Qualifier("defaultJdbcTemplate")
     private JdbcTemplate jdbcTemplate;
 
     @Override

@@ -1,11 +1,15 @@
 package com.inspur.bigdata.web;
 
+import com.inspur.bigdata.domain.Customer;
+import com.inspur.bigdata.domain.CustomerRepository;
 import com.inspur.bigdata.domain.User;
+import com.inspur.bigdata.domain.p.UserRepository;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -21,6 +25,9 @@ public class UserController {
     private static final Logger log = Logger.getLogger(UserController.class);
     // 创建线程安全的Map
     static Map<Long, User> users = Collections.synchronizedMap(new HashMap<Long, User>());
+
+    @Autowired
+    CustomerRepository customerRepository;
 
     @RequestMapping(value="/", method= RequestMethod.GET)
     @ApiOperation(value="获取用户列表", notes="")
@@ -80,6 +87,7 @@ public class UserController {
     @RequestMapping(value = "login", method = RequestMethod.POST)
     public String login(@RequestBody User user){
         Long userId = user.getId();
+        customerRepository.save(new Customer("chen", "hao"));
         if(users.get(userId) == null){
             users.put(userId, user);
             return "login failed";
