@@ -24,16 +24,16 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class MultiDataSourceTest {
 
     @Autowired
-//    @Qualifier("primaryJdbcTemplate")
+    @Qualifier("primaryJdbcTemplate")
     protected JdbcTemplate jdbcTemplate1;
 
     @Autowired
-//    @Qualifier("secondaryJdbcTemplate")
+    @Qualifier("secondaryJdbcTemplate")
     protected JdbcTemplate jdbcTemplate2;
 
 
     @Autowired
-//    @Qualifier("envJdbcTemplate")
+    @Qualifier("envJdbcTemplate")
     protected JdbcTemplate jdbcTemplate3;
 
     @Before
